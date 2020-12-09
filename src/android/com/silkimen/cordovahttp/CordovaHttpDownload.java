@@ -8,8 +8,6 @@ import javax.net.ssl.SSLSocketFactory;
 
 import com.silkimen.http.HttpRequest;
 import com.silkimen.http.TLSConfiguration;
-
-import org.apache.cordova.file.FileUtils;
 import org.json.JSONObject;
 
 class CordovaHttpDownload extends CordovaHttpBase {
@@ -30,10 +28,7 @@ class CordovaHttpDownload extends CordovaHttpBase {
 
     if (request.code() >= 200 && request.code() < 300) {
       File file = new File(new URI(this.filePath));
-      JSONObject fileEntry = FileUtils.getFilePlugin().getEntryForFile(file);
-
       request.receive(file);
-      response.setFileEntry(fileEntry);
     } else {
       response.setErrorMessage("There was an error downloading the file");
     }
